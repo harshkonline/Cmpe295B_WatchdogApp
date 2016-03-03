@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name">WATCHDOG</string>
+
+    <string name="title_section1">Summary</string>
+    <string name="title_section2">System</string>
+    <string name="title_section3">Display</string>
+    <string name="title_section4">Battery</string>
+    <string name="title_section5">Memory</string>
+    <string name="title_section6">Running apps</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_about">About</string>
+    <string name="title">WATCHDOG APPLICATION</string>
+
+    <string name="summary">Summary</string>
+    <string name="system">System</string>
+    <string name="display">Display</string>
+    <string name="battery">Battery</string>
+    <string name="memory">Memory</string>
+
+    <!--Summary fragment-->
+    <string name="summary_os">OS version</string>
+    <string name="summary_api">API level</string>
+    <string name="summary_bootloader">Bootloader version</string>
+    <string name="summary_brand">Brand</string>
+    <string name="summary_device">Device</string>
+    <string name="summary_model">Model</string>
+    <string name="summary_manufacturer">Manufacturer</string>
+    <string name="summary_product">Product</string>
+    <string name="summary_serial">Hardware Serial</string>
+
+    <!--System fragment-->
+    <string name="system_wifi_label">WiFi</string>
+    <string name="system_wifi_mac">WiFi MAC Address</string>
+    <string name="system_wifi_ipv4">IPV4 address</string>
+    <string name="system_wifi_ipv6">IPV6 address</string>
+    <string name="system_wifi_cpu_label">CPU</string>
+
+    <!--Display fragment-->
+    <string name="display_density_dpi">Density</string>
+    <string name="display_density_scaled">Scaled density</string>
+    <string name="display_xdpi">xdpi</string>
+    <string name="display_ydpi">ydpi</string>
+    <string name="display_density_reference">Density reference</string>
+    <string name="display_density_default">Density default</string>
+    <string name="display_density_low">Density low</string>
+    <string name="display_density_medium">Density medium</string>
+    <string name="display_density_high">Density high</string>
+    <string name="display_screen">Screen</string>
+    <string name="display_height">Height pixels</string>
+    <string name="display_width">Width pixels</string>
+
+    <!--Memory fragment-->
+    <string name="memory_ram">RAM</string>
+    <string name="memory_total_ram">Total memory</string>
+    <string name="memory_available_ram">Available memory</string>
+    <string name="memory_percentage_ram">Percentage available</string>
+    <string name="memory_low_ram">Low memory</string>
+    <string name="memory_used_ram">Used memory</string>
+    <string name="memory_threshold_ram">Threshold memory</string>
+
+    <!--Battery fragment-->
+    <string name="battery_infos">Informations</string>
+    <string name="battery_health">Health</string>
+    <string name="battery_icon_small">Icon Small</string>
+    <string name="battery_level">Level</string>
+    <string name="battery_plugged">Plugged</string>
+    <string name="battery_present">Present battery</string>
+    <string name="battery_technology">Technology</string>
+    <string name="battery_temperature">Temperature</string>
+    <string name="battery_voltage">Voltage</string>
+    <string name="battery_charged">% charged</string>
+    <string name="battery_remaining">% remaining</string>
+
+    <!--Storage fragment-->
+    <string name="memory_storage">Storage</string>
+    <string name="memory_external">External memory</string>
+    <string name="memory_available_internal">Available internal memory size</string>
+    <string name="memory_total_internal">Total internal memory size</string>
+    <string name="memory_available_external">Available external memory size</string>
+    <string name="memory_total_external">Total external memory size</string>
+
+    <!--Running application fragment-->
+    <string name="apps_description">Description</string>
+
+    <!--About-->
+    <string name="title_activity_about">About</string>
+    <string name="about_application_label">Application</string>
+    <string name="about_application">WATCHDOG</string>
+    <string name="about_developer_label">Developers</string>
+    <string name="about_developer">Harshad, Dhaval, Abhishek, Prashant</string>
+    <string name="about_contact_label">Contact</string>
+    <string name="about_contact">watchdog@gmail.com</string>
+    <string name="about_more_label">More</string>
+    <string name="about_more1"></string>
+    <string name="about_more2"></string>
+    <string name="title_activity_running_apps">RunningAppsActivity</string>
+</resources>
