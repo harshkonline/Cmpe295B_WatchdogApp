@@ -3,11 +3,10 @@ package cmpe295b.watchdog.ui.activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
-import cmpe295b.watchdog.R;
-import cmpe295b.watchdog.core.WatchdogApplication;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
+import cmpe295b.watchdog.R;
 import cmpe295b.watchdog.core.WatchdogApplication;
 
 public class AboutActivity extends ActionBarActivity {

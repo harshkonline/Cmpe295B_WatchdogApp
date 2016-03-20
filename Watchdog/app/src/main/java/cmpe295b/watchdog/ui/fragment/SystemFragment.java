@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -15,7 +16,12 @@ import android.widget.TextView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
-//import org.apache.http.conn.InetAddressUtils;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,7 +37,11 @@ import java.util.List;
 import cmpe295b.watchdog.R;
 import cmpe295b.watchdog.core.WatchdogApplication;
 import cmpe295b.watchdog.ui.activity.BaseActivity;
+import cmpe295b.watchdog.util.QueryBuilder;
+import cmpe295b.watchdog.util.SystemInfo;
 import timber.log.Timber;
+
+//import org.apache.http.conn.InetAddressUtils;
 
 
 public class SystemFragment extends Fragment {
@@ -52,6 +62,7 @@ public class SystemFragment extends Fragment {
         WifiManager manager = (WifiManager) getActivity().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = manager.getConnectionInfo();
         String wifiString = wifiInfo.getMacAddress();
+        String totalCPUUtil="";
 
         //get elements
         TextView textViewSystemWifiMac = (TextView) view.findViewById(R.id.textview_system_wifi_mac);
@@ -65,10 +76,18 @@ public class SystemFragment extends Fragment {
         textViewSystemWifiIpv4.setText(getIPAddress(true));
         textViewSystemWifiIpv6.setText(getIPAddress(false));
         textViewSystemCpu.setText(readCpuInfo());
-        textTotalCpuUsage.setText("Total CPU Utillization "+getCpuUsageStatistic().toString());
+        totalCPUUtil=getCpuUsageStatistic().toString();
+        textTotalCpuUsage.setText("Total CPU Utillization " + totalCPUUtil);
+
+        SystemInfo info=new SystemInfo();
+       // info.totalCPUUtil=totalCPUUtil;
+        info.totalCPUUtil=totalCPUUtil;
+
+        SaveAsyncTask tsk = new SaveAsyncTask();
+        tsk.execute(info);
         //textTotalCpuUsage.setText("sdadadsa");
 
-        Timber.d("cpu:"+readCpuInfo());
+        Timber.d("cpu:" + readCpuInfo());
 
         return view;
     }
@@ -76,8 +95,8 @@ public class SystemFragment extends Fragment {
     private String getCpuUsageStatistic() {
 
         String tempString = executeTop();
-
-        /*tempString = tempString.replaceAll(",", "");
+        String userUtil="";
+        tempString = tempString.replaceAll(",", "");
         tempString = tempString.replaceAll("User", "");
         tempString = tempString.replaceAll("System", "");
         tempString = tempString.replaceAll("IOW", "");
@@ -92,8 +111,9 @@ public class SystemFragment extends Fragment {
         for (int i = 0; i < myString.length; i++) {
             myString[i] = myString[i].trim();
             cpuUsageAsInt[i] = Integer.parseInt(myString[i]);
-        }*/
-        return tempString;
+        }
+        userUtil= (String.valueOf(cpuUsageAsInt[0]));
+        return userUtil;
     }
 
     private String executeTop() {
@@ -199,4 +219,59 @@ public class SystemFragment extends Fragment {
         }
         return result;
     }
+
+
+    public class SaveAsyncTask extends AsyncTask<SystemInfo, Void, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(SystemInfo... arg0) {
+            try
+            {
+                SystemInfo sysInfo = arg0[0];
+                Log.i("sysinfo@@@",sysInfo.totalCPUUtil);
+                QueryBuilder qb = new QueryBuilder();
+                String message="";
+                HttpClient httpClient = new DefaultHttpClient();
+                HttpPost request = new HttpPost(qb.buildContactsSaveURL());
+                Log.i("@@apikey",qb.buildContactsSaveURL());
+                JSONObject object = new JSONObject();
+                try {
+
+                    object.put("cpuUtil", sysInfo.totalCPUUtil);
+
+
+                } catch (Exception ex) {
+
+                }
+
+
+                message = object.toString();
+                StringEntity params =new StringEntity(qb.createRecord(sysInfo));
+                //StringEntity params =new StringEntity(message);
+                request.addHeader("content-type", "application/json");
+                request.setEntity(params);
+                HttpResponse response = httpClient.execute(request);
+                Log.i("@@response",String.valueOf(response.getStatusLine().getStatusCode()));
+                if(response.getStatusLine().getStatusCode()<205)
+                {
+                    Log.i("@@","SUCESS");
+                    return true;
+
+                }
+                else
+                {
+                    return false;
+                }
+            } catch (Exception e) {
+                //e.getCause();
+                String val = e.getMessage();
+                String val2 = val;
+                Log.i("exception@@",val2);
+                return false;
+            }
+        }
+
+    }
+
+
 }
