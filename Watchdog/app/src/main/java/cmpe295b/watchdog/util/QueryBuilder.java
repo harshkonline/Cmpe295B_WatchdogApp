@@ -67,7 +67,13 @@ public class QueryBuilder {
     {
         return String
                 .format("{\"document\" : {\"cpuUtil\": \"%s\", \"deviceId\": \"%s\", }, \"safe\" : true}",
-                        sysInfo.totalCPUUtil, sysInfo.totalCPUUtil, sysInfo.totalCPUUtil, sysInfo.deviceId);
+                        sysInfo.totalCPUUtil, sysInfo.deviceId);
+        /*return String
+                .format("{\"document\" : {\"first_name\": \"%s\", "
+                                + "\"last_name\": \"%s\", \"email\": \"%s\", "
+                                + "\"phone\": \"%s\"}, \"safe\" : true}",
+                        sysInfo.deviceId,  sysInfo.deviceId,  sysInfo.deviceId,  sysInfo.deviceId);*/
     }
+
 
 }
