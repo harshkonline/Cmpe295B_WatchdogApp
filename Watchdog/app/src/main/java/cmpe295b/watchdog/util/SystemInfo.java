@@ -5,5 +5,6 @@ package cmpe295b.watchdog.util;
  */
 public class SystemInfo {
     public String totalCPUUtil;
+    public String deviceId;
 }
 

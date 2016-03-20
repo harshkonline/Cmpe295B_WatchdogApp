@@ -82,6 +82,7 @@ public class SystemFragment extends Fragment {
         SystemInfo info=new SystemInfo();
        // info.totalCPUUtil=totalCPUUtil;
         info.totalCPUUtil=totalCPUUtil;
+        info.deviceId=wifiInfo.getMacAddress();
 
         SaveAsyncTask tsk = new SaveAsyncTask();
         tsk.execute(info);

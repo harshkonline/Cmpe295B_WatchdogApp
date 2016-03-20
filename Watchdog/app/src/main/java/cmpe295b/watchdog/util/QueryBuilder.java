@@ -66,8 +66,8 @@ public class QueryBuilder {
     public String createRecord(SystemInfo sysInfo)
     {
         return String
-                .format("{\"document\" : {\"cpuUtil\": \"%s\", }, \"safe\" : true}",
-                        sysInfo.totalCPUUtil, sysInfo.totalCPUUtil, sysInfo.totalCPUUtil, sysInfo.totalCPUUtil);
+                .format("{\"document\" : {\"cpuUtil\": \"%s\", \"deviceId\": \"%s\", }, \"safe\" : true}",
+                        sysInfo.totalCPUUtil, sysInfo.totalCPUUtil, sysInfo.totalCPUUtil, sysInfo.deviceId);
     }
 
 }
